@@ -2,21 +2,21 @@
 
 import React, { useRef, useEffect } from "react";
 
+const services = [
+  { title: "Prowadzenie social media" },
+  { title: "Tworzenie rolek" },
+  { title: "Identyfikacja wizualna" },
+  { title: "Projekty kreatywne" },
+  { title: "Strategia działania" },
+  { title: "Poznajmy się" },
+];
+
 const Czym_sie = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const services = [
-    { title: "Prowadzenie social media", icon: "→" },
-    { title: "Tworzenie rolek", icon: "→" },
-    { title: "Identyfikacja wizualna", icon: "→" },
-    { title: "Projekty kreatywne", icon: "→" },
-    { title: "Strategia działania", icon: "→" },
-    { title: "Poznajmy się", icon: "→" },
-  ];
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -27,59 +27,58 @@ const Czym_sie = () => {
           }
         });
       },
-      { threshold: 0.5 },
+      { threshold: 0.3 }
     );
-
     observer.observe(video);
-
-    return () => {
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <section className="min-h-screen w-full bg-[#F5F1E8] px-4 py-16 md:px-8 lg:px-16">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
-        {/* Left Content */}
-        <div className="space-y-8 md:space-y-12">
-          <div>
-            <h2 className="mb-4 font-sans text-4xl font-normal leading-tight md:text-5xl lg:text-6xl">
-              Czym się zajmujemy?
-            </h2>
-            <p className="text-xl font-normal text-[#E63946] md:text-2xl">
-              Naszą ofertę dopasowujemy do Twoich potrzeb.
-            </p>
-          </div>
+    <section className="w-full bg-[#f5f2ec] px-6 py-12 md:px-10 lg:px-14 lg:py-16">
+      <div className="flex flex-col lg:flex-row lg:items-stretch lg:gap-12">
 
-          {/* Service Buttons Grid */}
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6">
-            {services.map((service, index) => (
+        {/* ── Lewa kolumna ── */}
+        <div className="flex flex-col lg:w-[58%]">
+          {/* Nagłówek */}
+          <h2 className="font-serif text-[clamp(36px,5.5vw,72px)] font-bold text-[#1a1a1a] leading-[1.05] mb-3">
+            Czym się zajmujemy?
+          </h2>
+          <p className="font-sans text-base text-[#e8302a] mb-10 lg:mb-14">
+            Naszą ofertę dopasowujemy do Twoich potrzeb.
+          </p>
+
+          {/* Siatka przycisków 2×3 */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-auto">
+            {services.map((service) => (
               <button
-                key={index}
-                className="group flex items-center justify-between rounded-full border-2 border-black bg-transparent px-6 py-4  text-left transition-all hover:bg-black hover:text-white "
+                key={service.title}
+                className="flex items-center justify-between rounded-full border border-[#1a1a1a] bg-transparent px-7 py-3.5 font-sans text-[15px] text-[#1a1a1a] text-left transition-colors hover:bg-[#1a1a1a] hover:text-white"
+                style={{ borderWidth: "1.5px", minWidth: "240px" }}
               >
-                <span className="text-base font-normal md:text-lg">
-                  {service.title}
-                </span>
-                <span className="ml-2 text-xl">{service.icon}</span>
+                <span>{service.title}</span>
+                <span className="ml-3">→</span>
               </button>
             ))}
           </div>
         </div>
 
-        {/* Right Video */}
-        <div className="relative h-[500px]  md:h-[600px] lg:h-[700px]">
+        {/* ── Prawa kolumna — wideo ── */}
+        <div
+          className="mt-10 lg:mt-0 lg:w-[42%] overflow-hidden"
+          style={{ maxHeight: "560px", aspectRatio: "3/4" }}
+        >
           <video
             ref={videoRef}
             className="h-full w-full object-cover"
             loop
             muted
             playsInline
+            aria-label="Kobieta pracująca na laptopie"
           >
             <source src="/5.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
           </video>
         </div>
+
       </div>
     </section>
   );
