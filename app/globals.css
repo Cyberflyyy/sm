@@ -1,9 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f5f2ec;
+  --foreground: #1a1a1a;
+  --accent: #e8302a;
+  --white: #ffffff;
 }
-@theme {
-  --font-raleway: var(--font-raleway), sans-serif;
+
+@theme inline {
+  --font-sans: var(--font-dm-sans), 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), 'Playfair Display', ui-serif, Georgia, serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-white: var(--white);
 }

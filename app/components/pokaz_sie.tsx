@@ -3,86 +3,121 @@ import Image from "next/image";
 
 const Pokaz_sie = () => {
   return (
-    <section className="min-h-screen bg-white px-4 py-8 md:px-8 lg:px-16">
-      {/* Top Bar - Logo left, Button right */}
-      <div className="mb-20 flex items-start justify-between md:mb-24">
-        <Image
-          src="/logo.png"
-          alt="Logo"
-          width={200}
-          height={200}
-          className="h-32 w-auto md:h-38 lg:h-48"
-        />
+    <section className="bg-white">
+      {/* ── Top bar ── */}
+      <div className="flex items-center justify-between px-6 pt-6 pb-2 md:px-10 lg:px-14 lg:pt-10">
+        {/* Logo sM! */}
+        <span
+          className="font-sans font-bold leading-none select-none"
+          style={{ fontSize: "clamp(28px, 3vw, 42px)", color: "#e8302a" }}
+          aria-label="Simple Media logo"
+        >
+          sM!
+        </span>
 
-        <div className="mb-12 flex flex-col items-center justify-center gap-6 md:mb-16 lg:flex-row lg:gap-8">
-          <h1 className="text-center font-raleway text-5xl font-normal leading-tight md:text-6xl lg:text-7xl xl:text-8xl">
-            Pokaż się
-            <br />
-            <p className="font-raleway">w social media</p>
-          </h1>
-
+        {/* Nagłówek H1 na środku */}
+        <h1
+          className="font-sans font-bold text-[#1a1a1a] text-center leading-[1.05] tracking-tight flex-1 px-4"
+          style={{ fontSize: "clamp(36px, 7vw, 96px)" }}
+        >
+          Pokaż się{" "}
           <svg
-            className="hidden h-10 w-20 lg:block"
-            viewBox="0 0 80 40"
+            className="inline-block align-middle"
+            style={{ width: "clamp(28px, 5vw, 72px)", height: "clamp(14px, 2.5vw, 36px)", marginBottom: "0.1em" }}
+            viewBox="0 0 72 36"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
           >
             <path
-              d="M2 20H70M70 20L55 5M70 20L55 35"
-              stroke="currentColor"
-              strokeWidth="3"
+              d="M2 18H66M66 18L50 4M66 18L50 32"
+              stroke="#1a1a1a"
+              strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
           </svg>
-        </div>
-        <button className="rounded-full border-2 border-black px-6 py-3 text-base font-normal transition-colors hover:bg-black hover:text-white md:px-8 md:py-4 md:text-lg">
+          <br />
+          w social media
+        </h1>
+
+        {/* Przycisk CTA */}
+        <button
+          className="flex-shrink-0 rounded-full border border-[#1a1a1a] bg-transparent px-5 py-2.5 font-sans text-sm text-[#1a1a1a] transition-colors hover:bg-[#1a1a1a] hover:text-white md:px-7 md:py-3 md:text-base"
+          style={{ borderWidth: "1.5px" }}
+        >
           Współpracuj z nami
         </button>
       </div>
 
-      {/* Main Content */}
-      <div className="mx-auto max-w-7xl">
-        {/* Centered Header with Arrow */}
-
-        {/* Image Grid */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+      {/* ── Galeria zdjęć ── */}
+      <div className="px-6 pb-6 pt-4 md:px-10 lg:px-14 lg:pb-10">
+        {/* Desktop: 4 kolumny */}
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-2">
+          {/* Zdjęcie 1 — czarno-białe */}
           <div className="aspect-[3/4] overflow-hidden">
             <Image
               src="/1.png"
-              alt="Social media image 1"
+              alt="Kobieta pisząca przy świetle"
               width={400}
               height={533}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover grayscale"
             />
           </div>
+          {/* Zdjęcie 2 — czerwone kozaki, kolor zachowany */}
           <div className="aspect-[3/4] overflow-hidden">
             <Image
               src="/2.png"
-              alt="Social media image 2"
+              alt="Czerwone kozaki w ruchu"
               width={400}
               height={533}
               className="h-full w-full object-cover"
             />
           </div>
+          {/* Zdjęcie 3 — czarno-białe */}
           <div className="aspect-[3/4] overflow-hidden">
             <Image
               src="/3.png"
-              alt="Social media image 3"
+              alt="Kobieta przy biurku z książkami"
               width={400}
               height={533}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover grayscale"
             />
           </div>
+          {/* Zdjęcie 4 — czarno-białe */}
           <div className="aspect-[3/4] overflow-hidden">
             <Image
               src="/4.png"
-              alt="Social media image 4"
+              alt="Kobieta z rękami za głową w plenerze"
               width={400}
               height={533}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover grayscale"
             />
           </div>
+        </div>
+
+        {/* Mobile: poziomy scroll */}
+        <div className="flex sm:hidden gap-2 overflow-x-auto pb-2 snap-x snap-mandatory">
+          {[
+            { src: "/1.png", alt: "Kobieta pisząca przy świetle", grayscale: true },
+            { src: "/2.png", alt: "Czerwone kozaki w ruchu", grayscale: false },
+            { src: "/3.png", alt: "Kobieta przy biurku z książkami", grayscale: true },
+            { src: "/4.png", alt: "Kobieta z rękami za głową", grayscale: true },
+          ].map((img) => (
+            <div
+              key={img.src}
+              className="snap-start flex-shrink-0 overflow-hidden"
+              style={{ width: "72vw", aspectRatio: "3/4" }}
+            >
+              <Image
+                src={img.src}
+                alt={img.alt}
+                width={400}
+                height={533}
+                className={`h-full w-full object-cover${img.grayscale ? " grayscale" : ""}`}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </section>
