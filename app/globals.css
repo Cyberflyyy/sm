@@ -7,3 +7,6 @@
 @theme {
   --font-raleway: var(--font-raleway), sans-serif;
 }
+html {
+  scroll-behavior: smooth;
+}
