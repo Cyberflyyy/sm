@@ -85,7 +85,7 @@ const Footer = () => {
       {/* Dolny pasek */}
       <div className="border-t border-white/20 px-8 lg:px-12 py-4 flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-0 sm:justify-between text-white text-xs lg:text-sm">
         <p>Aleksandra Zatorska SIMPLE MEDIA</p>
-        <p>polityka prywatności itp</p>
+        <p>polityka prywatności </p>
         <p>NIP: 9662206159</p>
         <p>REGON: 541677815</p>
       </div>

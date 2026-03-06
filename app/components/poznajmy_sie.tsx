@@ -25,7 +25,7 @@ const Poznajmy_sie = () => {
   return (
     <section
       id="poznajmy-sie"
-      className="w-full bg-white font-raleway h-screen flex flex-col"
+      className="w-full bg-white font-raleway lg:h-screen flex flex-col"
       ref={sectionRef}
     >
       {/* ── DESKTOP ── */}
@@ -69,7 +69,6 @@ const Poznajmy_sie = () => {
             className="relative overflow-hidden"
             style={{ width: "480px", height: "640px" }}
           >
-            {/* rotate na osobnym wrapperze – nie koliduje z framer-motion */}
             <div
               className="absolute inset-0 overflow-hidden"
               style={{
@@ -93,7 +92,7 @@ const Poznajmy_sie = () => {
 
       {/* ── MOBILE ── */}
       <motion.div
-        className="lg:hidden flex flex-col px-6 py-10 gap-8 h-full overflow-y-auto"
+        className="lg:hidden flex flex-col px-6 py-10 gap-8"
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
@@ -107,7 +106,6 @@ const Poznajmy_sie = () => {
         </motion.button>
 
         <motion.div variants={itemVariants} className="flex justify-center">
-          {/* rotate bezpośrednio na kontenerze – działa bo nie ma konfliktu z animate */}
           <div
             className="relative overflow-hidden"
             style={{
