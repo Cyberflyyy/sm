@@ -1,34 +1,43 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView, Transition } from "framer-motion";
+import { motion, useInView, type Variants } from "framer-motion";
+
+const containerVariants: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12 } },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
 
 const Strategia_dzialania = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
-  const fadeUp = (delay: number) => ({
-    initial: { opacity: 0, y: 30 },
-    animate: isInView ? { opacity: 1, y: 0 } : {},
-    transition: {
-      duration: 0.6,
-      delay,
-      ease: [0.25, 0.1, 0.25, 1],
-    } as Transition,
-  });
-
   return (
     <section
       id="strategia-dzialania"
-      className="w-full bg-white font-raleway h-screen flex overflow-hidden"
+      className="w-full bg-white font-raleway"
       ref={sectionRef}
     >
       {/* ── DESKTOP ── */}
-      <div className="hidden lg:flex w-full h-full">
+      <motion.div
+        className="hidden lg:flex w-full h-screen overflow-hidden"
+        variants={containerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
         {/* Lewa – 60% */}
         <div className="w-[60%] flex flex-col px-16 py-12 gap-10">
           <motion.button
-            {...fadeUp(0)}
+            variants={itemVariants}
             className="inline-flex items-center justify-between min-w-[280px] px-7 py-5 border-2 border-black rounded-full text-base font-normal hover:bg-black hover:text-white transition-colors w-fit"
           >
             <span>Strategia działania</span>
@@ -36,7 +45,10 @@ const Strategia_dzialania = () => {
           </motion.button>
 
           <div className="flex flex-col gap-10 justify-center flex-1">
-            <motion.div {...fadeUp(0.15)} className="flex items-start gap-6">
+            <motion.div
+              variants={itemVariants}
+              className="flex items-start gap-6"
+            >
               <span className="text-6xl lg:text-7xl font-light text-neutral-300 w-20 lg:w-24 leading-none shrink-0">
                 01
               </span>
@@ -52,7 +64,10 @@ const Strategia_dzialania = () => {
               </div>
             </motion.div>
 
-            <motion.div {...fadeUp(0.25)} className="flex items-start gap-6">
+            <motion.div
+              variants={itemVariants}
+              className="flex items-start gap-6"
+            >
               <span className="text-6xl lg:text-7xl font-light text-neutral-300 w-20 lg:w-24 leading-none shrink-0">
                 02
               </span>
@@ -71,23 +86,33 @@ const Strategia_dzialania = () => {
           </div>
         </div>
 
-        {/* Prawa – video przyklejony do prawej, h-screen */}
-        <motion.div {...fadeUp(0.2)} className="w-[40%] h-full">
+        {/* Prawa – video */}
+        <motion.div variants={itemVariants} className="w-[40%] h-full">
           <video
             src="/11.mp4"
             autoPlay
             muted
             loop
             playsInline
-            className="w-full h-full object-cover"
+            style={{
+              display: "block",
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
           />
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* ── MOBILE ── */}
-      <div className="lg:hidden flex flex-col px-6 py-10 gap-8 w-full overflow-y-auto">
+      <motion.div
+        className="lg:hidden flex flex-col px-6 py-10 gap-8 w-full pb-12"
+        variants={containerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
         <motion.button
-          {...fadeUp(0)}
+          variants={itemVariants}
           className="inline-flex items-center justify-between min-w-[260px] px-7 py-5 border-2 border-black rounded-full text-base font-normal hover:bg-black hover:text-white transition-colors w-fit"
         >
           <span>Strategia działania</span>
@@ -95,7 +120,10 @@ const Strategia_dzialania = () => {
         </motion.button>
 
         <div className="flex flex-col gap-8">
-          <motion.div {...fadeUp(0.1)} className="flex items-start gap-4">
+          <motion.div
+            variants={itemVariants}
+            className="flex items-start gap-4"
+          >
             <span className="text-5xl font-light text-neutral-300 w-16 leading-none shrink-0">
               01
             </span>
@@ -111,7 +139,10 @@ const Strategia_dzialania = () => {
             </div>
           </motion.div>
 
-          <motion.div {...fadeUp(0.2)} className="flex items-start gap-4">
+          <motion.div
+            variants={itemVariants}
+            className="flex items-start gap-4"
+          >
             <span className="text-5xl font-light text-neutral-300 w-16 leading-none shrink-0">
               02
             </span>
@@ -129,21 +160,11 @@ const Strategia_dzialania = () => {
           </motion.div>
         </div>
 
-        {/* Video mobile */}
-        <motion.div
-          {...fadeUp(0.3)}
-          className="w-full aspect-video rounded-sm overflow-hidden"
-        >
-          <video
-            src="/11.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
-      </div>
+        {/* Video – ukryte na mobile zgodnie z Twoją prośbą */}
+        {/* <motion.div variants={itemVariants} className="w-full aspect-video overflow-hidden">
+          <video src="/11.mp4" autoPlay muted loop playsInline className="w-full h-full object-cover" />
+        </motion.div> */}
+      </motion.div>
     </section>
   );
 };

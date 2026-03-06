@@ -3,33 +3,45 @@
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Transition } from "framer-motion";
+import { type Variants } from "framer-motion";
+
+const containerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.12 },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
 const IdentyfikacjaWizualna = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
-  const fadeUp = (delay: number) => ({
-    initial: { opacity: 0, y: 30 },
-    animate: isInView ? { opacity: 1, y: 0 } : {},
-    transition: {
-      duration: 0.6,
-      delay,
-      ease: [0.25, 0.1, 0.25, 1],
-    } as Transition,
-  });
-
   return (
     <section
       id="identyfikacja-wizualna"
-      className="w-full bg-[#f0ebe0] font-raleway h-screen flex flex-col"
+      className="w-full bg-[#f0ebe0] font-raleway"
       ref={sectionRef}
     >
       {/* ── DESKTOP ── */}
-      <div className="hidden lg:flex w-full h-full">
+      <motion.div
+        className="hidden lg:flex w-full h-screen"
+        variants={containerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
         {/* Lewa – 50% */}
         <div className="w-1/2 flex flex-col px-16 py-12 gap-10">
           <motion.button
-            {...fadeUp(0)}
+            variants={itemVariants}
             className="inline-flex items-center justify-between min-w-[280px] px-7 py-5 border-2 border-black rounded-full text-base font-normal hover:bg-black hover:text-white transition-colors w-fit"
           >
             <span>Identyfikacja wizualna</span>
@@ -37,7 +49,10 @@ const IdentyfikacjaWizualna = () => {
           </motion.button>
 
           <div className="flex flex-col gap-10 justify-center flex-1">
-            <motion.div {...fadeUp(0.15)} className="flex items-start gap-6">
+            <motion.div
+              variants={itemVariants}
+              className="flex items-start gap-6"
+            >
               <span className="text-6xl lg:text-7xl font-light text-neutral-300 w-20 lg:w-24 leading-none shrink-0">
                 01
               </span>
@@ -53,7 +68,10 @@ const IdentyfikacjaWizualna = () => {
               </div>
             </motion.div>
 
-            <motion.div {...fadeUp(0.25)} className="flex items-start gap-6">
+            <motion.div
+              variants={itemVariants}
+              className="flex items-start gap-6"
+            >
               <span className="text-6xl lg:text-7xl font-light text-neutral-300 w-20 lg:w-24 leading-none shrink-0">
                 02
               </span>
@@ -75,7 +93,7 @@ const IdentyfikacjaWizualna = () => {
         <div className="w-1/2 flex flex-col gap-3 py-8 px-8 h-full">
           <div className="flex gap-3 flex-1 min-h-0">
             <motion.div
-              {...fadeUp(0.1)}
+              variants={itemVariants}
               className="relative w-1/2 self-start overflow-hidden group cursor-pointer shadow-sm"
               style={{ height: "100%" }}
             >
@@ -89,7 +107,7 @@ const IdentyfikacjaWizualna = () => {
             </motion.div>
 
             <motion.div
-              {...fadeUp(0.2)}
+              variants={itemVariants}
               className="relative w-1/2 ml-3 self-end overflow-hidden group cursor-pointer shadow-sm"
               style={{ height: "90%" }}
             >
@@ -104,7 +122,7 @@ const IdentyfikacjaWizualna = () => {
           </div>
 
           <motion.div
-            {...fadeUp(0.3)}
+            variants={itemVariants}
             className="flex justify-center"
             style={{ height: "38%" }}
           >
@@ -119,12 +137,17 @@ const IdentyfikacjaWizualna = () => {
             </div>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* ── MOBILE ── */}
-      <div className="lg:hidden flex flex-col px-6 py-10 gap-8">
+      <motion.div
+        className="lg:hidden flex flex-col px-6 py-10 gap-8 min-h-screen pb-16"
+        variants={containerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
         <motion.button
-          {...fadeUp(0)}
+          variants={itemVariants}
           className="inline-flex items-center justify-between min-w-[260px] px-7 py-5 border-2 border-black rounded-full text-base font-normal hover:bg-black hover:text-white transition-colors w-fit"
         >
           <span>Identyfikacja wizualna</span>
@@ -132,7 +155,10 @@ const IdentyfikacjaWizualna = () => {
         </motion.button>
 
         <div className="flex flex-col gap-8">
-          <motion.div {...fadeUp(0.1)} className="flex items-start gap-4">
+          <motion.div
+            variants={itemVariants}
+            className="flex items-start gap-4"
+          >
             <span className="text-5xl font-light text-neutral-300 w-16 leading-none shrink-0">
               01
             </span>
@@ -148,7 +174,10 @@ const IdentyfikacjaWizualna = () => {
             </div>
           </motion.div>
 
-          <motion.div {...fadeUp(0.2)} className="flex items-start gap-4">
+          <motion.div
+            variants={itemVariants}
+            className="flex items-start gap-4"
+          >
             <span className="text-5xl font-light text-neutral-300 w-16 leading-none shrink-0">
               02
             </span>
@@ -165,12 +194,13 @@ const IdentyfikacjaWizualna = () => {
           </motion.div>
         </div>
 
+        {/* Zdjęcia mobile – bez napisów */}
         <div className="flex flex-col gap-3">
           <div className="flex gap-3">
             <motion.div
-              {...fadeUp(0.25)}
+              variants={itemVariants}
               className="relative flex-1 overflow-hidden cursor-pointer shadow-sm"
-              style={{ height: "200px" }}
+              style={{ height: "220px" }}
             >
               <Image
                 src="/8.png"
@@ -179,15 +209,11 @@ const IdentyfikacjaWizualna = () => {
                 sizes="50vw"
                 className="object-cover object-top transition-transform duration-500 hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-              <p className="absolute bottom-3 left-3 right-3 text-white text-xs font-bold leading-snug">
-                na tiktoku testuję restauracje i dzielę się swoim życiem
-              </p>
             </motion.div>
             <motion.div
-              {...fadeUp(0.3)}
+              variants={itemVariants}
               className="relative flex-1 overflow-hidden cursor-pointer shadow-sm"
-              style={{ height: "200px" }}
+              style={{ height: "240px" }}
             >
               <Image
                 src="/9.png"
@@ -196,16 +222,12 @@ const IdentyfikacjaWizualna = () => {
                 sizes="50vw"
                 className="object-cover object-top transition-transform duration-500 hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-              <p className="absolute bottom-3 left-3 right-3 text-white text-xs font-bold leading-snug">
-                mam na imię Aleksandra
-              </p>
             </motion.div>
           </div>
           <motion.div
-            {...fadeUp(0.35)}
+            variants={itemVariants}
             className="relative w-full overflow-hidden cursor-pointer shadow-sm"
-            style={{ height: "200px" }}
+            style={{ height: "300px" }}
           >
             <Image
               src="/10.png"
@@ -214,14 +236,9 @@ const IdentyfikacjaWizualna = () => {
               sizes="100vw"
               className="object-cover object-center transition-transform duration-500 hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-            <p className="absolute bottom-3 left-3 right-3 text-white text-xs font-bold leading-snug">
-              kocham murale, odkąd nauczycielka w liceum kazała mi zrobić
-              prezentacje o wszystkich w Białymstoku
-            </p>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

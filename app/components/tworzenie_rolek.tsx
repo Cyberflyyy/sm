@@ -59,12 +59,12 @@ const Tworzenie_rolek = () => {
   return (
     <section
       id="tworzenie-rolek"
-      className="w-full bg-white font-raleway h-screen flex flex-col"
+      className="w-full bg-white font-raleway"
       ref={sectionRef}
     >
       {/* ── DESKTOP ── */}
       <motion.div
-        className="hidden lg:flex w-full h-full"
+        className="hidden lg:flex w-full h-screen"
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
@@ -122,9 +122,8 @@ const Tworzenie_rolek = () => {
 
         {/* Prawa – 50%, dwa filmy */}
         <div className="w-1/2 flex items-center justify-center gap-10 py-8 px-6">
-          {/* Film 1 – węższy i dłuższy */}
           <VideoCard
-            src="/v1.mp4"
+            src="/0304.mp4"
             className="self-start"
             style={{
               width: "calc(40% - 20px)",
@@ -132,12 +131,11 @@ const Tworzenie_rolek = () => {
               marginTop: "20px",
             }}
           />
-          {/* Film 2 – szerszy i krótszy */}
           <VideoCard
-            src="/5.mp4"
+            src="/filmv2.mp4"
             className="self-end"
             style={{
-              width: "calc(55% - 20px)",
+              width: "calc(40% - 20px)",
               height: "63%",
               marginBottom: "20px",
             }}
@@ -147,7 +145,7 @@ const Tworzenie_rolek = () => {
 
       {/* ── MOBILE ── */}
       <motion.div
-        className="lg:hidden flex flex-col px-6 py-10 gap-8"
+        className="lg:hidden flex flex-col px-6 py-10 gap-8 pb-12"
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
@@ -200,19 +198,11 @@ const Tworzenie_rolek = () => {
           </motion.div>
         </div>
 
-        {/* Filmy mobile */}
-        <div className="flex gap-6 items-start">
-          <VideoCard
-            src="/v1.mp4"
-            className=""
-            style={{ width: "42%", height: "340px" }}
-          />
-          <VideoCard
-            src="/5.mp4"
-            className=""
-            style={{ width: "52%", height: "285px", marginTop: "60px" }}
-          />
-        </div>
+        {/* Filmy mobile – ukryte */}
+        {/* <div className="flex gap-6 items-start">
+          <VideoCard src="/v1.mp4" className="" style={{ width: "42%", height: "340px" }} />
+          <VideoCard src="/5.mp4" className="" style={{ width: "42%", height: "285px", marginTop: "60px" }} />
+        </div> */}
       </motion.div>
     </section>
   );

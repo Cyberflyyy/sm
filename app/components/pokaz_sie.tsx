@@ -6,6 +6,10 @@ import { MoveRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Pokaz_sie = () => {
+  const handleScroll = (href: string) => {
+    const el = document.querySelector(href);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
   return (
     <section className="min-h-screen bg-white px-4 py-8 md:px-8 lg:px-16">
       {/* ── MOBILE HEADER ── */}
@@ -65,6 +69,7 @@ const Pokaz_sie = () => {
             <motion.button
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
+              onClick={() => handleScroll("#kontakt")}
               transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }}
               className="whitespace-nowrap rounded-full border-2 border-black px-8 py-4 text-lg font-normal transition-colors hover:bg-black hover:text-white"
             >
@@ -117,7 +122,10 @@ const Pokaz_sie = () => {
           transition={{ duration: 0.5, delay: 1.5 }}
           className="mt-8 flex justify-center lg:hidden"
         >
-          <button className="whitespace-nowrap rounded-full border-2 border-black px-8 py-4 text-base font-normal transition-colors hover:bg-black hover:text-white">
+          <button
+            onClick={() => handleScroll("#kontakt")}
+            className="whitespace-nowrap rounded-full border-2 border-black px-8 py-4 text-base font-normal transition-colors hover:bg-black hover:text-white"
+          >
             Współpracuj z nami
           </button>
         </motion.div>
