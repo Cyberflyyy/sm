@@ -4,12 +4,20 @@ import React from "react";
 import Image from "next/image";
 import { MoveRight } from "lucide-react";
 import { motion } from "framer-motion";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 
 const Pokaz_sie = () => {
   const handleScroll = (href: string) => {
     const el = document.querySelector(href);
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
+
+  const [emblaRef] = useEmblaCarousel(
+    { loop: true, align: "start", dragFree: false },
+    [Autoplay({ delay: 3000, stopOnInteraction: false })],
+  );
+
   return (
     <section className="min-h-screen bg-white px-4 py-8 md:px-8 lg:px-16">
       {/* ── MOBILE HEADER ── */}
@@ -34,7 +42,6 @@ const Pokaz_sie = () => {
 
       {/* ── DESKTOP HEADER ── */}
       <div className="relative hidden lg:flex w-full min-h-[220px] items-center justify-center">
-        {/* LOGO – lewy górny róg */}
         <div className="absolute top-0 left-0">
           <Image
             src="/logo.png"
@@ -45,9 +52,7 @@ const Pokaz_sie = () => {
           />
         </div>
 
-        {/* ŚRODEK */}
         <div className="flex flex-col items-start pl-30">
-          {/* Linia 1 – "Pokaż się" + strzałka + przycisk */}
           <div className="flex items-center gap-8">
             <motion.span
               initial={{ opacity: 0, x: -60 }}
@@ -77,7 +82,6 @@ const Pokaz_sie = () => {
             </motion.button>
           </div>
 
-          {/* Linia 2 – "w social media" */}
           <motion.span
             initial={{ opacity: 0, x: -60 }}
             animate={{ opacity: 1, x: 0 }}
@@ -89,9 +93,9 @@ const Pokaz_sie = () => {
         </div>
       </div>
 
-      {/* ── IMAGE GRID ── */}
-      <div className="mx-auto max-w-7xl mt-8 lg:mt-12">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+      {/* ── DESKTOP: oryginalny grid 4 zdjęć ── */}
+      <div className="hidden lg:block mx-auto max-w-7xl mt-12">
+        <div className="grid grid-cols-4 gap-6">
           {["/1.png", "/2.png", "/3.png", "/4.png"].map((src, i) => (
             <motion.div
               key={src}
@@ -102,7 +106,7 @@ const Pokaz_sie = () => {
                 delay: 0.8 + i * 0.15,
                 ease: "easeOut",
               }}
-              className="aspect-3/4 overflow-hidden rounded-sm"
+              className="aspect-[3/4] overflow-hidden rounded-sm"
             >
               <Image
                 src={src}
@@ -114,13 +118,37 @@ const Pokaz_sie = () => {
             </motion.div>
           ))}
         </div>
+      </div>
 
-        {/* Przycisk mobile pod zdjęciami */}
+      {/* ── MOBILE: slider Embla bez przycisków ── */}
+      <div className="lg:hidden mt-8">
+        <div className="overflow-hidden" ref={emblaRef}>
+          <div className="flex gap-4">
+            {["/1.png", "/2.png", "/3.png", "/4.png"].map((src, i) => (
+              <div
+                key={i}
+                className="relative shrink-0 w-full overflow-hidden rounded-sm"
+              >
+                <div className="aspect-[3/4] overflow-hidden rounded-sm">
+                  <Image
+                    src={src}
+                    alt={`Social media image ${i + 1}`}
+                    width={400}
+                    height={533}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Przycisk mobile */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 1.5 }}
-          className="mt-8 flex justify-center lg:hidden"
+          className="mt-8 flex justify-center"
         >
           <button
             onClick={() => handleScroll("#kontakt")}

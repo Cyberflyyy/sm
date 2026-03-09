@@ -17,7 +17,7 @@ const Footer = () => {
         />
       </div>
 
-      {/* Główna treść – wypełnia przestrzeń */}
+      {/* Główna treść */}
       <div className="flex flex-col lg:flex-row flex-1 px-8 lg:px-12 py-10 lg:py-0 gap-10 lg:gap-0 lg:items-center">
         {/* Lewa – nagłówek + przycisk */}
         <div className="flex flex-col gap-8 lg:w-1/2">
@@ -31,22 +31,30 @@ const Footer = () => {
           </button>
         </div>
 
-        {/* Prawa – kontakt + ikony */}
+        {/* Prawa – kontakt + dane firmy + ikony */}
         <div className="flex flex-col gap-6 lg:w-1/2 lg:pl-16">
+          {/* Kontakt */}
           <div className="flex flex-col gap-1 text-white text-base lg:text-lg">
             <p>azatorska.simplemedia@gmail.com</p>
             <p>+48 884 822 323</p>
           </div>
+
+          {/* Dane firmy */}
           <div className="flex flex-col gap-1 text-white text-base lg:text-lg">
-            <p>Węglowa 13,</p>
+            <p className="font-semibold">Aleksandra Zatorska SIMPLE MEDIA</p>
+            <p>ul. Węglowa 13</p>
             <p>15-121 Białystok</p>
+            <p className="mt-2">NIP: 9662206159</p>
+            <p>REGON: 541677815</p>
           </div>
 
           {/* Ikony social media */}
           <div className="flex gap-4 mt-2">
             {/* Facebook */}
             <a
-              href="#"
+              href="https://www.facebook.com/people/Simple-Media/61573082590304/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center text-white hover:bg-white hover:text-[#d30200] transition-colors"
               aria-label="Facebook"
             >
@@ -56,7 +64,9 @@ const Footer = () => {
             </a>
             {/* Instagram */}
             <a
-              href="#"
+              href="https://www.instagram.com/simplemediapl"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center text-white hover:bg-white hover:text-[#d30200] transition-colors"
               aria-label="Instagram"
             >
@@ -82,12 +92,9 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Dolny pasek */}
-      <div className="border-t border-white/20 px-8 lg:px-12 py-4 flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-0 sm:justify-between text-white text-xs lg:text-sm">
-        <p>Aleksandra Zatorska SIMPLE MEDIA</p>
-        <p>polityka prywatności </p>
-        <p>NIP: 9662206159</p>
-        <p>REGON: 541677815</p>
+      {/* Dolny pasek – tylko polityka prywatności */}
+      <div className="border-t border-white/20 px-8 lg:px-12 py-4 flex text-white text-xs lg:text-sm">
+        <p>Polityka prywatności</p>
       </div>
     </footer>
   );
