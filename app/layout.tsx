@@ -23,9 +23,6 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Simple Media ",
   description: " Agencja Social Media",
-  other: {
-    "google-site-verification": "MxIQ0EoE", // Twój kod z Google Search Console
-  },
 };
 
 export default function RootLayout({
@@ -35,6 +32,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <meta
+        name="google-site-verification"
+        content="mUxEIQOoEooEhtSgkH4xTa8qd_zdHpPlJdwdFvDFoKI"
+      />
       <body
         className={`${geistSans.variable} ${raleway.variable} ${geistMono.variable} antialiased`}
       >
