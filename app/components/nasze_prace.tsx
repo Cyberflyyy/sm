@@ -82,7 +82,7 @@ const Nasze_prace = () => {
           <div className="flex w-full h-[200px] gap-4 pb-4">
             <div className="relative w-[150px] h-full overflow-hidden">
               <Image
-                src="/5.png"
+                src="/np12.png"
                 alt="praca 1"
                 fill
                 className="object-cover"
@@ -191,7 +191,7 @@ const Nasze_prace = () => {
                 playsInline
                 className="w-full h-full object-cover"
               >
-                <source src="/np6.mp4" type="video/mp4" />
+                <source src="/v333.mp4" type="video/mp4" />
               </video>
             </div>
           </div>
@@ -209,7 +209,7 @@ const Nasze_prace = () => {
             </div>
             <div className="relative flex-1 h-full overflow-hidden">
               <Image
-                src="/np12.png"
+                src="/5.png"
                 alt="praca 12"
                 fill
                 className="object-cover"

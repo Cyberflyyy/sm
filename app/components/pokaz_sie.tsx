@@ -36,7 +36,7 @@ const Pokaz_sie = () => {
           className="text-center text-5xl font-normal leading-tight"
         >
           Pokaż się
-          <br />w social media
+          <br />w social mediach
         </motion.h1>
       </div>
 
@@ -88,7 +88,7 @@ const Pokaz_sie = () => {
             transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
             className="text-7xl font-normal leading-tight xl:text-8xl"
           >
-            w social media
+            w social mediach
           </motion.span>
         </div>
       </div>

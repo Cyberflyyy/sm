@@ -78,7 +78,7 @@ const Prowadzenie_social = () => {
                   Już nie musisz się martwić
                 </h3>
                 <p className="text-base lg:text-lg text-gray-700 leading-relaxed">
-                  Terminy, scenariusze, zagrywki, publikacje leżą po naszej
+                  Terminy, scenariusze, nagrywki, publikacje leżą po naszej
                   stronie. Ty możesz skupić się na rozwoju swojego biznesu.
                 </p>
               </div>
@@ -152,7 +152,7 @@ const Prowadzenie_social = () => {
                 Już nie musisz się martwić
               </h3>
               <p className="text-base text-gray-700 leading-relaxed">
-                Terminy, scenariusze, zagrywki, publikacje leżą po naszej
+                Terminy, scenariusze, nagrywki, publikacje leżą po naszej
                 stronie. Ty możesz skupić się na rozwoju swojego biznesu.
               </p>
             </div>
