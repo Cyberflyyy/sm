@@ -23,6 +23,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Simple Media ",
   description: " Agencja Social Media",
+  other: {
+    "google-site-verification": "MxIQ0EoE", // Twój kod z Google Search Console
+  },
 };
 
 export default function RootLayout({
